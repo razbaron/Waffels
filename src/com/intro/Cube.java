@@ -65,12 +65,12 @@ public class Cube {
 
    // This method restarts a cube to it's original state
    public void cubeInit() {
-       front = new CubesFace(Color.BLUE);
-       back = new CubesFace(Color.GREEN);
-       right = new CubesFace(Color.ORANGE);
-       left = new CubesFace(Color.RED);
-       up = new CubesFace(Color.WHITE);
-       down = new CubesFace(Color.YELLOW);
+       front.cubesFaceInit(Color.BLUE);
+       back.cubesFaceInit(Color.GREEN);
+       right.cubesFaceInit(Color.ORANGE);
+       left.cubesFaceInit(Color.RED);
+       up.cubesFaceInit(Color.WHITE);
+       down.cubesFaceInit(Color.YELLOW);
     }
 
    // This method print every face of the cube as a two dimensional array
@@ -98,7 +98,16 @@ public class Cube {
    // This method will manege the rotation of a face and its neighbors
    public void rotateFace (CubesFace faceToRotate, int dir){
        System.out.println("This is a try to print the value that the point represent");
-       //Just a test run: mapOfFacesNeighbors.get(faceToRotate)[0].points.stream().forEach(point -> System.out.println(mapOfFacesNeighbors.get(faceToRotate)[0].neighborName.getColorOfPoint(point.getLocation())));
+       //Just a test run
+       if (faceToRotate == this.right)
+           System.out.println("Truedat");
+       if (faceToRotate.equals(this.right))
+           System.out.println("Truedat 2.0");
+       //I can make a switch case of that
+       // f
+       //Just a test run:
+       System.out.println(mapOfFacesNeighbors.get(faceToRotate));
+       mapOfFacesNeighbors.get(faceToRotate)[0].points.stream().forEach(point -> System.out.println(point.getLocation()));
        System.out.println(mapOfFacesNeighbors.get(faceToRotate).length-1);
        for (int i=0; i<mapOfFacesNeighbors.get(faceToRotate).length;i++){
            List<Color> colors = new ArrayList<Color>();
@@ -108,11 +117,4 @@ public class Cube {
        }
        return;
    }
-/*
-    public boolean isCubeSolved (){
-        return true;
-    }
-*/
-
-
 }
