@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class CubesFace {
     //Building the face object, two dimensional enum array. The object of the cube will use six of me
 
-    //private Color topMiddle;
     private int cubesSize=3;
     private Color [][]  face = new Color [cubesSize][cubesSize];
 
@@ -85,6 +84,17 @@ public class CubesFace {
         points.stream().forEach(point -> listOfColors.add(this.getColorOfPoint(point)));
         return listOfColors;
     }
+
+    //This method will get a list of colors and insert them to the list of points it gets
+    public void replaceColorList(List<Point> points, List<Color> temp) {
+        if (points.size() != temp.size())
+            System.out.println("replaceColorList method in CubesFace has a problem");
+        for (int i=0;i<points.size();i++)
+            this.face [(int)points.get(i).getX()][(int)points.get(i).getY()] = temp.get(i);
+        return;
+    }
+
+
 /* 20.6.20 this is a nice way that Rotem showed me
     public List<Color> getColorOfPoints(List<Point> points) {
         return points.stream()
