@@ -66,11 +66,26 @@ public class CubesFace {
     }
 
     // This method will rotate only the face without neighbor cells
-    public void rotate(int dir) {
-        Color [][]  newFace = new Color [cubesSize][cubesSize];
-        // I'll have two faces, one that I'll define and this
-//        faceAfterRotation[1,1]=this[1,1];
-        face=newFace;
+    public void rotate (int dir) {
+        for (int j=0;j<dir;j++){
+            CubesFace tempFace = this.copyMe();
+            for (int i=0;i<tempFace.face[0].length;i++)
+                face[i][2]=tempFace.face[0][i];
+            for (int i=0;i<tempFace.face[1].length;i++)
+                face[i][1]=tempFace.face[1][i];
+            for (int i=0;i<tempFace.face[2].length;i++)
+                face[i][0]=tempFace.face[2][i];
+        }
+        return;
+    }
+
+    //This method will copy one face to the other while keeping the at different places at memory
+    private CubesFace copyMe (){
+        CubesFace copyTo = new CubesFace(Color.WHITE);
+        for (int i=0;i<this.face.length;i++)
+            for (int j=0;j<this.face[i].length;j++)
+                copyTo.face[i][j]=this.face[i][j];
+        return copyTo;
     }
 
     //This method gets a point on a face and return it's color content

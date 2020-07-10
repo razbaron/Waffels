@@ -27,9 +27,9 @@ public class Cube {
         //Up is White
         mapOfFaceNeighbors.put(up,
                 new RelevantCells[]{new RelevantCells(front,  List.of(new Point (0,0), new Point(0,1), new Point(0,2))),
-                        new RelevantCells(right, List.of(new Point (0,0), new Point(0,1), new Point(0,2))),
+                        new RelevantCells(left, List.of(new Point (0,0), new Point(0,1), new Point(0,2))),
                         new RelevantCells(back,  List.of(new Point (0,0), new Point(0,1), new Point(0,2))),
-                        new RelevantCells(left,  List.of(new Point (0,0), new Point(0,1), new Point(0,2)))});
+                        new RelevantCells(right,  List.of(new Point (0,0), new Point(0,1), new Point(0,2)))});
         //Down is Yellow
         mapOfFaceNeighbors.put(down,
                 new RelevantCells[]{new RelevantCells(front,  List.of(new Point (2,2), new Point(2,1), new Point(2,0))),
@@ -96,9 +96,13 @@ public class Cube {
 
    // This method will manege the rotation of a face and its neighbors
    public void rotation (CubesFace face, int dir) {
-       //compute dir so it won be over 4
+       //compute dir so it won be bigger than 3
+       dir=dir%4;
+       System.out.println("the number of rotation is:"+dir);
+       if(dir==0)
+           return;
        System.out.println("Starting rotation");
-       //face.rotate(dir);
+       face.rotate(dir);
        rotateNeighbors(face, dir);
        System.out.println("Rotation is done");
        return;
